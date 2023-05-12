@@ -65,6 +65,8 @@ void readNodesFromFile(FILE* file, Node** root) {
         new_node->y = y;
 
         // Добавляем новый узел в дерево
+
+        //printf("%s ", new_node->data);
         push(root, new_node);
     }
 }
@@ -332,7 +334,36 @@ void replacementAnswer(Node* node)
     addAnswer(node, ans0, ans1);
 }
 
+void DFSNum(Node* node, int* x) 
+{
 
+    if (node->left != NULL)
+    {
+
+        DFSNum(node->left,x);
+    }
+
+    node->x = *x;
+    (*x)++;
+
+    if (node->right != NULL)
+    {
+        DFSNum(node->right,x);
+    }
+}
+
+void BFSNum(Node* node, int* y)
+{
+    node->y = *y;
+    (*y)--;
+    
+    if (node->left != NULL)
+        BFSNum(node->left, y);
+
+    if (node->right != NULL)
+        BFSNum(node->right, y);
+
+}
 
 int main()
 {
@@ -414,10 +445,13 @@ int main()
         }
 
     }
+    int x = INT_MIN;
+    int y = INT_MAX;
+
+    DFSNum(node, &x);
+    BFSNum(node, &y);
 
     saveTree(node);
-
-
     node2 = NULL;
     free(node2);
     freeTree(node);
