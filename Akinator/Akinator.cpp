@@ -255,8 +255,6 @@ void addQuestion(Node** node, char* question)
     (*node)->data = (char*)malloc(strlen(question) + 1);
     strcpy((*node)->data, question);
     (*node)->exists = true;
-    (*node)->x = 0;
-    (*node)->y = 10000000;
 }
 
 void addAnswer(Node* node, char* answer0, char* answer1)
@@ -276,8 +274,6 @@ void addAnswer(Node* node, char* answer0, char* answer1)
     newNode0->left = NULL;
     newNode0->right = NULL;
     newNode0->exists = true;
-    newNode0->x = node->x - 1;
-    newNode0->y = node->y - 1;
 
     node->left = newNode0;
 
@@ -287,8 +283,6 @@ void addAnswer(Node* node, char* answer0, char* answer1)
     newNode1->left = NULL;
     newNode1->right = NULL;
     newNode1->exists = true;
-    newNode1->x = node->x + 1;
-    newNode1->y = node->y - 2;
 
     node->right = newNode1;
 }
