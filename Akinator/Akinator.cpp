@@ -14,6 +14,8 @@ struct Node
     int x, y;
 };
 
+void addTree(Node* node);
+
 void push(Node** node, Node* newNode);
 
 void writeNodeToFile(FILE* file, Node* node) {
@@ -442,6 +444,14 @@ int main()
     int x = INT_MIN;
     int y = INT_MAX;
 
+    printf("Добавить дерево в узел??\n");
+    printf("\n1 - yes; 0 - no: ");
+
+    scanf("%d", &num);
+
+    if (num == 1)
+        addTree(node);
+
     DFSNum(node, &x);
     BFSNum(node, &y);
 
@@ -452,4 +462,76 @@ int main()
     free(str);
     free(str1);
     return 1;
+}
+
+
+void addTree(Node* node)
+{
+    printf("Введите файл с деревом: ");
+    char* file;
+    char c;
+    while ((c = getchar()) != '\n' && c != EOF);
+    readStr(&file);
+
+    Node* node2 = NULL,* node3 = node,* node4 = NULL;
+    FILE* f = fopen(file, "rb");
+    int num = 0;
+
+    if (file != NULL)
+    {
+        readNodesFromFile(f, &node2);
+        fclose(f);
+    }
+
+    printf("\nВыбор узла для вставки дерева: ");
+
+    
+
+    while (1)
+    {
+        if (node3->type == 0)
+        {
+            printf("%s\n", node3->data);
+            printf("1 - yes; 0 - no: ");
+            scanf("%d", &num);
+            if (num == 1)
+            {
+                if (node3->right->type == 1)
+                {
+                    printf("Узел выбран\n");
+                    free(node3->right->data);
+                    node3->right = node2;
+                    node3 = NULL;
+                    free(node3);
+                    node4 - NULL;
+                    free(node4);
+                    node2 = NULL;
+                    free(node2);
+                    return;
+                }
+                node3 = node3->right;
+            }
+            if (num == 0)
+            {
+                if (node3->left->type == 1)
+                {
+                    printf("Узел выбран\n");
+                    free(node3->left->data);
+                    node3->left = node2;
+                    node3 = NULL;
+                    free(node3);
+                    node4 - NULL;
+                    free(node4);
+                    node2 = NULL;
+                    free(node2);
+                    return;
+                }
+                node3 = node3->left;
+            }
+            continue;
+        }
+
+
+    }
+
 }
