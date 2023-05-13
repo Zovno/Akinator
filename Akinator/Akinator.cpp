@@ -473,7 +473,7 @@ void addTree(Node* node)
     while ((c = getchar()) != '\n' && c != EOF);
     readStr(&file);
 
-    Node* node2 = NULL,* node3 = node,* node4 = NULL;
+    Node* node2 = NULL,* node3 = node;
     FILE* f = fopen(file, "rb");
     int num = 0;
 
@@ -503,8 +503,6 @@ void addTree(Node* node)
                     node3->right = node2;
                     node3 = NULL;
                     free(node3);
-                    node4 - NULL;
-                    free(node4);
                     node2 = NULL;
                     free(node2);
                     return;
@@ -520,8 +518,6 @@ void addTree(Node* node)
                     node3->left = node2;
                     node3 = NULL;
                     free(node3);
-                    node4 - NULL;
-                    free(node4);
                     node2 = NULL;
                     free(node2);
                     return;
